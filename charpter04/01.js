@@ -37,6 +37,6 @@ var data = [
   { type: 'php', content: 'php 哪家强' }
 ];
 
-for (var i = data.length; i >= 0; i--) {
-  Factory(s[i].type, s[i].content);
+for (var i = data.length - 1; i >= 0; i--) {
+  new Factory(data[i].type, data[i].content);
 }
