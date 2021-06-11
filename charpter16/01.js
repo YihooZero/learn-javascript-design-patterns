@@ -107,7 +107,7 @@ var CancelAlert = function (data) {
   // 取消按钮文案
   this.cancel = data.cancel;
   // 创建取消按钮
-  this.cancelBtn = document.createElement('apan');
+  this.cancelBtn = document.createElement('span');
   // 为取消按钮添加类
   this.cancelBtn.className = 'cancel';
   // 设置取消按钮内容
@@ -123,4 +123,24 @@ CancelAlert.prototype.init = function () {
 }
 CancelAlert.prototype.bindEvent = function () {
   var me = this;
+  // 标题提示框绑定事件方法继承
+  TitleAlert.prototype.bindEvent.call(me);
+  // 取消按钮绑定事件
+  this.cancelBtn.onclick = function () {
+    // 执行取消回调函数
+    me.fail();
+    // 隐藏弹层
+    me.hide();
+  }
 }
+
+new CancelAlert({
+  title: '提示标题',
+  content: '提示内容',
+  success: function () {
+    console.log('ok');
+  },
+  fail: function () {
+    console.log('cancel');
+  }
+}).init();
