@@ -93,11 +93,62 @@ function Waiter() {
 
   // 解决成功回调函数添加方法
   that.done = function () {
-
+    // 向成功回调函数容器中添加回调方法
+    doneArr = doneArr.concat(slice.call(arguments));
+    // 返回等待着对象
+    return that;
   }
 
   // 解决失败回调函数添加方法
   that.fail = function () {
-
+    // 向失败回调函数容器中添加回调方法
+    failArr = failArr.concat(slice.call(arguments));
+    // 返回等待着对象
+    return that;
   }
 }
+
+var waiter = new Waiter();
+
+var first = function () {
+  // 创建监听对象
+  var dtd = waiter.Deferred;
+  setTimeout(function () {
+    console.log('first finish');
+    // 发布解决成功消息
+    dtd.resolve();
+  }, 5000);
+  // 返回监听对象
+  return dtd;
+};
+
+var second = function () {
+  // 创建监听对象
+  var dtd = waiter.Deferred;
+  setTimeout(function () {
+    console.log('second finish');
+    // 发布解决成功消息
+    dtd.resolve();
+  }, 10000);
+  // 返回监听对象
+  return dtd;
+};
+
+// 等待者对象进行监听，执行相应的回调
+waiter
+  .when(first, second)
+  // 添加成功回调函数
+  .done(function () {
+    console.log('success');
+  }, function () {
+    console.log('success again')
+  })
+  // 添加失败回调函数
+  .fail(function () {
+    console.log('fail')
+  })
+// 输出结果
+// first
+// second
+// success
+// success again
