@@ -9,11 +9,12 @@ var Observer = (function () {
       // 如果此消息不存在则应该创建一个该消息类型
       if (typeof _message[type] === 'undefined') {
         // 将动作推入到该消息对应的动作执行队列中
-        _message[type] = fn;
+        _message[type] = [fn];
       } else {
         // 将动作方法推入该消息对应的动作执行序列中
         _message[type].push(fn);
       }
+      return Observer;
     },
     // 发布信息接口
     fire: function(type, args) {
