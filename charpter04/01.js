@@ -1,8 +1,7 @@
 // 安全模式创建的工厂类
 var Factory = function (type, content) {
   if (this instanceof Factory) {
-    var s = new this[type](content);
-    return s;
+    return new this[type](content);
   } else {
     return new Factory(type, content);
   }
