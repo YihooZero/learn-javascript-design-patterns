@@ -14,8 +14,6 @@ var Nav = function (data) {
   for (var i = 0, len = data.length; i < len; i++){
     this.html += formateString(this.trim, data[i]);
   }
-  // 返回字符串数据
-  return this.html;
 }
 
 // 带有消息提醒信息导航
@@ -24,10 +22,10 @@ var NumNav = function (data) {
   var tpl = '<b>{#num#}</b>';
   // 装饰数据
   for (var i = data.length - 1; i >= 0; i--) {
-    data[i].name += data[i].name + formateString(tpl, data[1]);
+    data[i].name += formateString(tpl, data[i]);
   }
   // 继承基础导航类，并返回字符串
-  return Nav.call(this, data)
+  Nav.call(this, data)
 }
 
 // 带有链接地址的导航
@@ -36,16 +34,16 @@ var LinkNav = function (data) {
   var tpl = '<span>{#link#}</span>';
   // 装饰数据
   for (var i = data.length - 1; i >= 0; i--) {
-    data[i].name += data[i].name + formateString(tpl, data[i]);
+    data[i].name += formateString(tpl, data[i]);
   }
   // 继承基础导航类，并返回字符串
-  return Nav.call(this, data);
+  Nav.call(this, data);
 }
 
 // 获取导航容器
 var nav = document.getElementById('content');
 // 添加内容
-nav.innerHTML = NumNav([
+nav.innerHTML = new NumNav([
   {
     href: 'http://www.baidu.com/',
     title: '百度一下，你就知道',
@@ -64,4 +62,4 @@ nav.innerHTML = NumNav([
     name: '腾讯',
     num: '3'
   }
-])
+]).html
