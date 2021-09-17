@@ -50,7 +50,7 @@ document.getElementById('next_page').onclick = function () {
       Flyweight.getDiv().innerHTML = article[n + j];
     } else if (article[n + j - len]) {
       // 否则插入起始位置第n+j-len条
-      Flyweight.getDiv().innerHTML = article[n + j - n];
+      Flyweight.getDiv().innerHTML = article[n + j - len];
     } else {
       // 如果都不存在则插入空字符串
       Flyweight.getDiv().innerHTML = '';
