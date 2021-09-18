@@ -43,7 +43,7 @@ var Observer = (function () {
         var i = _message[type].length - 1;
         for (; i >= 0; i--) {
           // 如果存在该动作则在消息动作序列中移除相应动作
-          _message[type][i] === fn && _message[type][i].splice(i, 1);
+          _message[type][i] === fn && _message[type].splice(i, 1);
         }
       }
     }
