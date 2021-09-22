@@ -64,7 +64,7 @@ var CanvasCommand = (function () {
         // 执行一个命令
       } else {
         // 如果msg.param 不是一个数组，将其转化为数组，apply第二个参数要求为数组
-        msg.param = Object.prototype.toString.call(mag.param) === '[object Array]' ? msg.param : [mag.param];
+        msg.param = Object.prototype.toString.call(msg.param) === '[object Array]' ? msg.param : [msg.param];
         // Action内部调用的方法可能引用this， 为保证作用域中this指向正确，故传入Action
         Action[msg.command].apply(Action, msg.param);
       }
@@ -73,7 +73,7 @@ var CanvasCommand = (function () {
 })()
 
 // 设置填充色彩为红色，并绘制一个矩形
-CanvasCommand([
+CanvasCommand.excute([
   {command: 'fillStyle', param: 'red'},
   {command: 'fillRect', param: [20, 20, 100, 100]}
 ]);
