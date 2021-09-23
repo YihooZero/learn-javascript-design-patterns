@@ -68,8 +68,8 @@ var showHideNavWidget = function (mod, tag, showOrHide) {
     // 如果设置为false或者为hide则值为hidden，否则为visible
     showOrHide = (!showOrHide || showOrHide === 'hide') ? 'hidden' : 'visible';
   // 占位隐藏这些标签
-  for (var  i = tag.length - 1; i >= 0; i--) {
-    tag.style.visibility = showOrHide;
+  for (var i = tag.length - 1; i >= 0; i--) {
+    tag[i].style.visibility = showOrHide;
   }
 };
 
@@ -94,6 +94,30 @@ var showHideNavWidget = function (mod, tag, showOrHide) {
   })
 })()
 
+// 推荐用户导航
+(function () {
+  // ...其他交互逻辑
+  // 订阅隐藏推荐用户导航消息提醒
+  Mediator.register('hideAllNavNum', function () {
+    showHideNavWidget('recommend_nav', 'b', false);
+  });
+  Mediator.register('showAllNavNum', function () {
+    showHideNavWidget('recommend_nav', 'b', true);
+  })
+})()
+
+// 最近常用导航
+(function () {
+  // ... 其他逻辑交互
+  // 订阅显示最近常用导航网址消息
+  Mediator.register('hideAllNavUrl', function () {
+    showHideNavWidget('recently_nav', 'span', 'hide');
+  });
+  // 订阅显示最近常用导航网址消息
+  Mediator.register('showAllNavUrl', function () {
+    showHideNavWidget('recently_nav', 'span', 'show');
+  })
+})()
 // 设置层模块
 (function () {
   // 消息提示框选框
