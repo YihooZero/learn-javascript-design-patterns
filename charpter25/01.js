@@ -9,7 +9,7 @@ var Iterator = function (items, container) {
     // 当前索引值，默认0
     index = 0;
   // 缓存源生数组splice方法
-  var splice = [].splice();
+  var splice = [].splice;
   return {
     // 获取第一个元素
     first(){
@@ -23,7 +23,7 @@ var Iterator = function (items, container) {
     },
     // 获取前一个元素
     pre(){
-      if (--index > 0) {
+      if (--index >= 0) {
         return items[index];
       } else {
         index = 0;
@@ -92,7 +92,7 @@ demo.dealEach(function (text, color) {
   this.innerHTML = text;
   this.style.background = color;
 }, 'test', 'pink');
-// 排它思想处理第3个与第四个元素
+// 排它思想处理第3个与第4个元素
 demo.exclusive([2, 3], function () {
   this.innerHTML = '被排除的';
   this.style.background = 'green';
