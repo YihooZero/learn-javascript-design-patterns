@@ -8,6 +8,7 @@ function getSublingName(node) {
       sibling = node.previousSibling;
     // 如果存在前一个兄弟元素
     while (sibling) {
+      // 如果节点为元素 && 节点类型与前一个兄弟元素类型相同 && 前一个兄弟元素名称存在
       if (sibling.nodeType == 1 && sibling.nodeType === node.nodeType && sibling.nodeName) {
         // 如果节点名称和前一个兄弟元素名称相同
         if (nodeName == sibling.nodeName) {
